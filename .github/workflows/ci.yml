@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: integration/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install Python project
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,integration,training]"
+          ./scripts/bootstrap_haxballgym.sh
+      - name: Install JavaScript dependencies
+        run: npm ci --prefix integration
+      - name: Python syntax and tests
+        run: |
+          python -m compileall -q haxball_env integration policy_contract sim_training scripts tests
+          python -m pytest -q
+          python scripts/check_documentation.py
+      - name: JavaScript syntax and tests
+        run: |
+          find integration -path '*/node_modules' -prune -o -name '*.js' -type f -exec node --check {} \;
+          npm test --prefix integration
+          npm run smoke:offline --prefix integration
+          npm run smoke:public-handshake --prefix integration
+          npm run smoke:queue --prefix integration
+      - name: Rust tests
+        run: cargo test --locked --manifest-path external/HaxballGym/rust/haxball_core/Cargo.toml

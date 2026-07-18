@@ -1,0 +1,17 @@
+{
+  "protocol_version": 1,
+  "type": "state",
+  "tick_id": 418,
+  "timestamp": 1784321000000.0,
+  "game_active": true,
+  "controlled": {"id": 2, "team": 1, "x": -92.0, "y": -11.0, "vx": 0.0, "vy": 0.0},
+  "opponent": {"id": 1, "team": 2, "x": 24.0, "y": 70.0, "vx": 0.0, "vy": -0.2},
+  "ball": {"x": 0.0, "y": 0.0, "vx": 0.0, "vy": 0.0},
+  "match": {
+    "controlled_side": "red",
+    "controlled_score": 0,
+    "opponent_score": 0,
+    "elapsed_time": 21.0,
+    "last_goal_event": null
+  }
+}

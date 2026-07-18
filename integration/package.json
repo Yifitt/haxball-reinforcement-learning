@@ -1,0 +1,20 @@
+{
+  "name": "haxball-real-integration",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests_js/*.test.js",
+    "smoke:offline": "node scripts/offline_smoke.js",
+    "smoke:public-handshake": "node scripts/offline_public_handshake_smoke.js",
+    "smoke:queue": "node scripts/offline_queue_smoke.js",
+    "smoke:stationary-kickoff": "node scripts/offline_stationary_kickoff_smoke.js",
+    "smoke:browser": "node scripts/browser_smoke.js",
+    "bridge": "node bridge/websocket_server.js",
+    "clients": "node browser/launch_clients.js",
+    "host": "node headless_host/launch_host.js"
+  },
+  "dependencies": {
+    "playwright-core": "^1.55.0",
+    "ws": "^8.18.3"
+  }
+}

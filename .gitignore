@@ -1,0 +1,65 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.token
+*.haxball-token
+secrets/
+credentials/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+build/
+dist/
+
+# Rust (the pinned upstream checkout is provisioned locally)
+target/
+
+# Node and browser tooling
+node_modules/
+npm-debug.log*
+.playwright/
+playwright-report/
+test-results/
+browser-profiles/
+chromium-profiles/
+screenshots/
+downloads/
+integration/.runtime/
+integration/.diagnostics/
+
+# Editors and operating systems
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Project-generated artifacts
+artifacts/
+checkpoints/
+data/raw/
+data/processed/
+data/human_matches/
+data/human_scenarios/
+runs/
+logs/
+outputs/
+experiments/
+*.log
+
+# Pinned third-party sources are restored by scripts/bootstrap_haxballgym.sh
+external/HaxballGym/

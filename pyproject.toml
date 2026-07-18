@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haxball-rl"
+version = "0.1.0"
+description = "Rust-simulator PPO/self-play with portable real-HaxBall deployment"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=1.24,<3",
+    "gymnasium>=0.29,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7,<9"]
+render = ["pygame>=2.5,<3"]
+integration = ["websockets>=14,<16"]
+training = ["torch>=2.4,<3"]
+
+[tool.setuptools.packages.find]
+include = [
+    "haxball_env*", "integration*", "policy_contract*", "sim_training*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "sim_training/tests"]
+addopts = "-ra --import-mode=importlib"

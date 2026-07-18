@@ -1,0 +1,20 @@
+[
+  {"id": 0, "name": "none", "keys": [], "kick": false},
+  {"id": 1, "name": "up", "keys": ["up"], "kick": false},
+  {"id": 2, "name": "down", "keys": ["down"], "kick": false},
+  {"id": 3, "name": "left", "keys": ["left"], "kick": false},
+  {"id": 4, "name": "right", "keys": ["right"], "kick": false},
+  {"id": 5, "name": "up-left", "keys": ["up", "left"], "kick": false},
+  {"id": 6, "name": "up-right", "keys": ["up", "right"], "kick": false},
+  {"id": 7, "name": "down-left", "keys": ["down", "left"], "kick": false},
+  {"id": 8, "name": "down-right", "keys": ["down", "right"], "kick": false},
+  {"id": 9, "name": "none+kick", "keys": [], "kick": true},
+  {"id": 10, "name": "up+kick", "keys": ["up"], "kick": true},
+  {"id": 11, "name": "down+kick", "keys": ["down"], "kick": true},
+  {"id": 12, "name": "left+kick", "keys": ["left"], "kick": true},
+  {"id": 13, "name": "right+kick", "keys": ["right"], "kick": true},
+  {"id": 14, "name": "up-left+kick", "keys": ["up", "left"], "kick": true},
+  {"id": 15, "name": "up-right+kick", "keys": ["up", "right"], "kick": true},
+  {"id": 16, "name": "down-left+kick", "keys": ["down", "left"], "kick": true},
+  {"id": 17, "name": "down-right+kick", "keys": ["down", "right"], "kick": true}
+]
