@@ -64,7 +64,7 @@ rollout path.
 ## Installation
 
 ```bash
-git clone https://github.com/USERNAME/REPOSITORY.git
+git clone https://github.com/Yifitt/haxball-reinforcement-learning.git
 cd haxball_reinforcement_learning
 python3.12 -m venv .venv
 source .venv/bin/activate
@@ -288,7 +288,6 @@ codebase.
 
 ## Known limitations
 
-- Real HaxBall behavior can differ from the simulator.
 - Live play depends on HaxBall, browser automation, WebRTC, and a valid Headless
   Host token; these are intentionally excluded from CI.
 - Training is CPU-only in the current Rust rollout adapter.
