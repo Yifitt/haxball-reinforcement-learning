@@ -4,38 +4,32 @@ set -euo pipefail
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 external_dir="$project_root/external"
 haxballgym_dir="$external_dir/HaxballGym"
-haxballgym_revision="$(tr -d '[:space:]' < "$external_dir/HAXBALLGYM_REVISION")"
-fetch_updates=false
+revision_file="$external_dir/HAXBALLGYM_REVISION"
 
-if [[ "${1:-}" == "--fetch" ]]; then
-  fetch_updates=true
-elif [[ -n "${1:-}" ]]; then
-  echo "usage: $0 [--fetch]" >&2
+if [[ -n "${1:-}" ]]; then
+  echo "usage: $0" >&2
   exit 2
 fi
 
-mkdir -p "$external_dir"
-
-ensure_checkout() {
-  local url="$1"
-  local target="$2"
-  local revision="$3"
-  if [[ ! -d "$target/.git" ]]; then
-    git clone "$url" "$target"
-  elif [[ "$fetch_updates" == true ]]; then
-    git -C "$target" fetch --all --tags --prune
-  fi
-  if ! git -C "$target" cat-file -e "${revision}^{commit}" 2>/dev/null; then
-    echo "revision $revision is unavailable in $target; rerun with --fetch" >&2
-    exit 1
-  fi
-  git -C "$target" checkout --detach "$revision"
-}
-
-ensure_checkout \
-  https://github.com/HaxballGym/HaxballGym.git \
-  "$haxballgym_dir" \
-  "$haxballgym_revision"
+if [[ ! -d "$haxballgym_dir" ]]; then
+  echo "vendored HaxballGym source is missing: $haxballgym_dir" >&2
+  exit 1
+fi
+if [[ ! -f "$haxballgym_dir/LICENSE" ||
+      ! -f "$haxballgym_dir/rust/haxball_core/pyproject.toml" ||
+      ! -f "$haxballgym_dir/haxballgym/pyproject.toml" ]]; then
+  echo "vendored HaxballGym source is incomplete" >&2
+  exit 1
+fi
+if [[ ! -f "$revision_file" ]]; then
+  echo "vendored HaxballGym revision record is missing: $revision_file" >&2
+  exit 1
+fi
+haxballgym_revision="$(tr -d '[:space:]' < "$revision_file")"
+if [[ ! "$haxballgym_revision" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "vendored HaxballGym revision record is invalid" >&2
+  exit 1
+fi
 
 python_executable="${PYTHON:-python}"
 if ! command -v "$python_executable" >/dev/null 2>&1; then

@@ -1,0 +1,19 @@
+[project]
+name = "haxballgym-examples"
+version = "1.0.0"
+description = "Example scripts for haxballgym — train your first Haxball bot with PPO self-play, then play it."
+requires-python = ">=3.12"
+dependencies = [
+    "haxball-core",   # the Rust physics engine (workspace member)
+    "haxballgym",     # the composable env API (workspace member)
+    "numpy>=1.23",
+    "torch>=2.0",
+    "pygame>=2.5",    # play.py — play against your model
+]
+
+[tool.uv]
+package = false       # a folder of scripts, not an installable distribution
+
+[tool.uv.sources]
+haxball-core = { workspace = true }
+haxballgym = { workspace = true }

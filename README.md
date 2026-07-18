@@ -45,7 +45,7 @@ integration/          Headless Host, WebSocket bridge, browser control, and test
 scripts/              setup, documentation, smoke, and benchmark helpers
 tests/                Python unit and offline integration tests
 docs/                 focused architecture and operations notes
-external/             revision pins; third-party source is restored locally
+external/             vendored HaxballGym source and its upstream revision record
 checkpoints/          local-only training and release artifacts
 ```
 
@@ -65,7 +65,7 @@ rollout path.
 
 ```bash
 git clone https://github.com/Yifitt/haxball-reinforcement-learning.git
-cd haxball_reinforcement_learning
+cd haxball-reinforcement-learning
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -80,16 +80,17 @@ Add the `render` extra if the independent Python renderer is needed:
 python -m pip install -e ".[render]"
 ```
 
-`scripts/bootstrap_haxballgym.sh` checks out the revision in
+`scripts/bootstrap_haxballgym.sh` verifies the vendored source recorded by
 `external/HAXBALLGYM_REVISION` and installs `haxball_core` and `haxballgym` into
-the active Python environment. Set `PYTHON=/path/to/python` only when selecting a
-different active interpreter intentionally. The restored upstream checkout,
-native build output, virtual environments, and Node modules are ignored by Git.
+the active Python environment. It never clones, pulls, initializes a submodule,
+or creates a nested virtual environment. Set `PYTHON=/path/to/python` only when
+selecting a different active interpreter intentionally. Native build output,
+virtual environments, and Node modules are ignored by Git.
 
 ## Rust simulator build
 
 The bootstrap command builds the PyO3 extension. Rust-only tests can then run
-against the pinned checkout:
+against the vendored source:
 
 ```bash
 cargo test --locked --manifest-path external/HaxballGym/rust/haxball_core/Cargo.toml
@@ -101,8 +102,8 @@ generated `target/` tree is ignored.
 
 ## Running tests
 
-All commands are offline after dependencies and the pinned simulator checkout are
-installed:
+All commands are offline after the project and vendored simulator dependencies
+are installed:
 
 ```bash
 python -m pytest -q
@@ -275,7 +276,7 @@ codebase.
 
 ## Utility scripts
 
-- `scripts/bootstrap_haxballgym.sh`: restore and install the pinned simulator.
+- `scripts/bootstrap_haxballgym.sh`: verify and install the vendored simulator.
 - `scripts/check_documentation.py`: verify README executable-path coverage.
 - `scripts/smoke_random_agent.py`: smoke the independent Python environment.
 - `scripts/watch_scripted_match.py`: render a scripted reference match.
@@ -288,6 +289,7 @@ codebase.
 
 ## Known limitations
 
+- Real HaxBall behavior can differ from the simulator.
 - Live play depends on HaxBall, browser automation, WebRTC, and a valid Headless
   Host token; these are intentionally excluded from CI.
 - Training is CPU-only in the current Rust rollout adapter.
@@ -308,3 +310,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and contribution expectations
 and [SECURITY.md](SECURITY.md) for private vulnerability reporting and token
 handling.
 
+## Related Projects
+
+This project vendors [HaxballGym](https://github.com/HaxballGym/HaxballGym) as its HaxBall simulation environment. The vendored source retains its original license and attribution.
+
+## License
+
+No license has been selected for this repository. Until the owner chooses and
+adds one, the code is not licensed for public reuse. This is a public-release
+blocker, not an invitation to assume a license.

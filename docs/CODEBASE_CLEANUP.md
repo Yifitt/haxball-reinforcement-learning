@@ -13,5 +13,7 @@ neutral local release copy lives under
 ignored by Git.
 
 The independent `haxball_env` physics reference and pinned HaxBallGym simulator
-workflow also remain. Generated third-party checkouts, virtual environments,
-native build output, Node modules, datasets, and checkpoints are local-only.
+workflow also remain. HaxballGym is vendored as ordinary source under
+`external/HaxballGym`; its upstream revision is recorded separately. Virtual
+environments, native build output, Node modules, datasets, and checkpoints remain
+local-only.

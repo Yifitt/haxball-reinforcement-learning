@@ -23,6 +23,11 @@ jobs:
           cache: npm
           cache-dependency-path: integration/package-lock.json
       - uses: dtolnay/rust-toolchain@stable
+      - name: Verify vendored simulator
+        run: |
+          test ! -e external/HaxballGym/.git
+          test -f external/HaxballGym/LICENSE
+          test -f external/HAXBALLGYM_REVISION
       - name: Install Python project
         run: |
           python -m pip install --upgrade pip

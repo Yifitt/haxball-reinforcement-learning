@@ -51,6 +51,17 @@ Thumbs.db
 # Project-generated artifacts
 artifacts/
 checkpoints/
+*.pt
+*.pth
+*.onnx
+*.so
+*.dylib
+*.dll
+*.exe
+*.zst
+*.zip
+*.tar
+*.tar.gz
 data/raw/
 data/processed/
 data/human_matches/
@@ -61,5 +72,17 @@ outputs/
 experiments/
 *.log
 
-# Pinned third-party sources are restored by scripts/bootstrap_haxballgym.sh
-external/HaxballGym/
+# Generated artifacts inside the vendored HaxballGym source
+external/HaxballGym/.venv/
+external/HaxballGym/**/target/
+external/HaxballGym/**/__pycache__/
+external/HaxballGym/**/*.py[cod]
+external/HaxballGym/**/.pytest_cache/
+external/HaxballGym/**/.mypy_cache/
+external/HaxballGym/**/.ruff_cache/
+external/HaxballGym/**/node_modules/
+external/HaxballGym/**/checkpoints/
+external/HaxballGym/**/runs/
+external/HaxballGym/**/logs/
+external/HaxballGym/**/dist/
+external/HaxballGym/**/build/
