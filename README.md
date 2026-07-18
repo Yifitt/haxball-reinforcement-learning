@@ -309,8 +309,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and contribution expectations
 and [SECURITY.md](SECURITY.md) for private vulnerability reporting and token
 handling.
 
-## License
-
-No license has been selected for this repository. Until the owner chooses and
-adds one, the code is not licensed for public reuse. This is a public-release
-blocker, not an invitation to assume a license.
