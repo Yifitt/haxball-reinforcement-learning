@@ -14,5 +14,3 @@ Do not add human gameplay recording or identity persistence without an explicit
 privacy and security review. Live-room tests must be opt-in and must never run in
 CI.
 
-This repository currently has no software license. Contributions should not
-assume a license will be selected until the owner adds one explicitly.
