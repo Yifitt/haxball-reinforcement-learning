@@ -314,8 +314,3 @@ handling.
 
 This project vendors [HaxballGym](https://github.com/HaxballGym/HaxballGym) as its HaxBall simulation environment. The vendored source retains its original license and attribution.
 
-## License
-
-No license has been selected for this repository. Until the owner chooses and
-adds one, the code is not licensed for public reuse. This is a public-release
-blocker, not an invitation to assume a license.
